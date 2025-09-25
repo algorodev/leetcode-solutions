@@ -22,7 +22,7 @@ export function getCoverUrl(page: PageObjectResponse): string | undefined {
 export function mapLeetCode(page: PageObjectResponse): LeetCode {
   const props: any = page.properties;
 
-  const leetcodeId = props?.ID;
+  const leetcodeId = props?.Id?.number;
   const title = rtToPlain(props?.Title?.title ?? []);
   const slug = (
     props?.Slug?.rich_text?.[0]?.plain_text ??
@@ -35,7 +35,7 @@ export function mapLeetCode(page: PageObjectResponse): LeetCode {
   const languages = (props?._Languages?.multi_select ?? []).map((l: any) => l.name);
   const time = props?.Time?.rich_text?.[0]?.plain_text ?? undefined;
   const space = props?.Space?.rich_text?.[0]?.plain_text ?? undefined;
-  const updated = props?.Update?.date?.start ?? undefined;
+  const updated = props?.Updated?.date?.start ?? undefined;
 
   const obj = {
     id: page.id,

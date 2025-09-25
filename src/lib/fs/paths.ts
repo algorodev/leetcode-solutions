@@ -4,7 +4,7 @@ import fs from 'node:fs';
 const project = () => process.cwd();
 
 export const CONTENT_DIR = path.join(project(), 'src/content');
-export const LEETCODE_DIR = path.join(CONTENT_DIR, 'blog');
+export const LEETCODE_DIR = path.join(CONTENT_DIR, 'leetcode');
 export const PUBLIC_DIR = path.join(project(), 'public');
 export const NOTION_PUBLIC_DIR = path.join(PUBLIC_DIR, 'notion');
 

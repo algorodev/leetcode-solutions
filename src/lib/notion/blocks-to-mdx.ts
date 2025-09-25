@@ -69,8 +69,17 @@ export async function blocksToMDX(
   }
 
   const mdxLines = await renderBlocks(blocks, 0);
-  const normalized = mdxLines.join('\n').replace(/\n{3,}/g, '\n\n');
-  return { mdx: normalized, coverPath: localCover };
+
+  const contentHasSolutionTabs = mdxLines.some(line => line.includes('<SolutionTabs'));
+
+  let finalMdx = mdxLines.join('\n').replace(/\n{3,}/g, '\n\n');
+
+  if (contentHasSolutionTabs) {
+    const importStatement = `import SolutionTabs from '../../components/SolutionTabs.astro';\n\n`;
+    finalMdx = importStatement + finalMdx;
+  }
+
+  return { mdx: finalMdx, coverPath: localCover };
 
   async function renderBlocks(items: any[] = [], depth: number): Promise<string[]> {
     const out: string[] = [];
@@ -133,10 +142,22 @@ export async function blocksToMDX(
         const codeText = (block.code?.rich_text ?? [])
           .map((r: any) => r?.plain_text ?? '')
           .join('');
+
+        const getLanguageTitle = (language: string): string => {
+          const langMap: Record<string, string> = {
+            'typescript': 'TypeScript Solution',
+            'javascript': 'JavaScript Solution',
+            'python': 'Python Solution',
+          };
+          return langMap[language.toLowerCase()] || 'Solution';
+        };
+
+        const title = getLanguageTitle(lang);
+
         out.push('');
-        out.push('```' + lang);
+        out.push(`<SolutionTabs lang="${lang}" title="${title}">`);
         out.push(codeText);
-        out.push('```');
+        out.push('</SolutionTabs>');
         out.push('');
       } else if (t === 'image') {
         const file = block.image?.external?.url ?? block.image?.file?.url;

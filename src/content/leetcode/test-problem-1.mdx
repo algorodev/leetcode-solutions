@@ -11,6 +11,8 @@ time: 0n
 space: 0n
 update: '2025-09-25T14:56:00.000+02:00'
 ---
+import SolutionTabs from '../../components/SolutionTabs.astro';
+
 ## Intuition
 Briefly describe the thinking process before coding.
 Why does this approach make sense?
@@ -31,7 +33,13 @@ Any mathematical reasoning or invariants here.
 but include them here for human readers.)
 ---
 ### Code (TypeScript)
+
+<SolutionTabs lang="typescript" title="TypeScript Solution">
+const twoSum = (a: number, b: number) => a+b;
+</SolutionTabs>
+
 ### Code (Python)
-<div class="my-2" />
-<div class="my-2" />
-<div class="my-2" />
+
+<SolutionTabs lang="python" title="Python Solution">
+const twoSum = (a, b) => a+b;
+</SolutionTabs>

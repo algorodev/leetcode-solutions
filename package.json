@@ -8,6 +8,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier . --write",
+    "content:mdx": "tsx scripts/notion-to-mdx.ts",
+    "prebuild": "tsx scripts/notion-to-mdx.ts",
     "build": "astro build"
   },
   "dependencies": {

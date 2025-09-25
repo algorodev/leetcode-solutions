@@ -11,5 +11,5 @@ export const notion = new Client({
 });
 
 export const resourceIds = {
-  leetcodesDb: process.env.NOTION_DATABASE_ID
+  leetcodesDb: process.env.NOTION_DATABASE_ID,
 };

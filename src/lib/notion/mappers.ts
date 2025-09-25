@@ -1,4 +1,4 @@
-import type { LeetCode } from './schemas.ts'
+import type { LeetCode } from './schemas.ts';
 import { LeetCodeSchema } from './schemas.ts';
 import type { PageObjectResponse } from '@notionhq/client';
 
@@ -22,7 +22,7 @@ export function getCoverUrl(page: PageObjectResponse): string | undefined {
 export function mapLeetCode(page: PageObjectResponse): LeetCode {
   const props: any = page.properties;
 
-  const leetcodeId = props?.ID
+  const leetcodeId = props?.ID;
   const title = rtToPlain(props?.Title?.title ?? []);
   const slug = (
     props?.Slug?.rich_text?.[0]?.plain_text ??

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const LeetCodeSchema = z.object({
   id: z.string(),
@@ -12,5 +12,5 @@ export const LeetCodeSchema = z.object({
   time: z.string(),
   space: z.string(),
   updated: z.string(),
-})
+});
 export type LeetCode = z.infer<typeof LeetCodeSchema>;

@@ -13,7 +13,7 @@ export async function getAllLeetCodes() {
     return { file, slug, ...fm, Content: mod.default };
   });
 
-  return leetcodes.sort((a, b) => b.id - a.id)
+  return leetcodes.sort((a, b) => b.id - a.id);
 }
 
 export async function getLeetcodeBySlug(slug: string) {

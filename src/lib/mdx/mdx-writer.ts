@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
-import { ensureDir, LEETCODE_DIR } from '../fs/paths'
+import { ensureDir, LEETCODE_DIR } from '../fs/paths';
 
 function sanitize<T>(value: T): T {
   if (Array.isArray(value)) {

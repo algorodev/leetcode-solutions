@@ -1,6 +1,6 @@
-import { notion, resourceIds } from './client'
-import { mapLeetCode } from './mappers'
-import type { LeetCode } from './schemas.ts'
+import { notion, resourceIds } from './client';
+import { mapLeetCode } from './mappers';
+import type { LeetCode } from './schemas.ts';
 
 async function resolveDataSourceId(id: string): Promise<string> {
   if (id.startsWith('ntn_')) return id;
@@ -37,7 +37,7 @@ export async function fetchAllLeetCodes(): Promise<LeetCode[]> {
   }
 
   const pages = results.filter((r: any) => r.object === 'page' && r.properties);
-  let leetcodes: LeetCode[] = pages.map((l: any) => mapLeetCode(l));
+  const leetcodes: LeetCode[] = pages.map((l: any) => mapLeetCode(l));
 
   leetcodes.sort((a, b) => b.leetcodeId - a.leetcodeId);
 

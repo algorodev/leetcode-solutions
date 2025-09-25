@@ -1,7 +1,7 @@
 import 'dotenv/config';
-import { fetchAllLeetCodes, fetchAllBlocks } from '../src/lib/notion/fetchers'
+import { fetchAllLeetCodes, fetchAllBlocks } from '../src/lib/notion/fetchers';
 import { blocksToMDX } from '../src/lib/notion/blocks-to-mdx';
-import { writeLeetcodeMDX } from '../src/lib/mdx/mdx-writer'
+import { writeLeetcodeMDX } from '../src/lib/mdx/mdx-writer';
 import { ensureBaseDirs, clearContentDirs } from '../src/lib/fs/paths';
 import { notion } from '../src/lib/notion/client';
 

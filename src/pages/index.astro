@@ -1,7 +1,53 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
+import ProblemCard from '../components/ProblemCard.astro'
+import { getCollection } from 'astro:content'
+
+const all = (await getCollection('leetcode')).sort((a, b) => a.data.id - b.data.id)
+const counts = all.reduce<Record<'Easy' | 'Medium' | 'Hard', number>>((acc, e) => {
+  acc[e.data.difficulty as 'Easy' | 'Medium' | 'Hard']++
+  return acc
+}, { Easy: 0, Medium: 0, Hard: 0 })
 ---
 
-<Layout>
-  <h1>Hello World!</h1>
+<Layout title='LeetCode Solutions – algoro.dev' description='Explanations, code and complexity notes.'>
+  <h1 class='text-3xl font-bold'>LeetCode Solutions</h1>
+  <p class='mt-1 text-slate-600'>Explanations, code and complexity notes.</p>
+
+  <div class='mt-6 flex flex-wrap items-center gap-2'>
+    <a href='/?difficulty=Easy' class='rounded-full border px-3 py-1 text-sm'>Easy ({counts.Easy})</a>
+    <a href='/?difficulty=Medium' class='rounded-full border px-3 py-1 text-sm'>Medium ({counts.Medium})</a>
+    <a href='/?difficulty=Hard' class='rounded-full border px-3 py-1 text-sm'>Hard ({counts.Hard})</a>
+    <a href='/' class='rounded-full border px-3 py-1 text-sm'>All</a>
+
+    <label>
+      <input id='q' type='search' placeholder='Search title or tag…'
+             class='ml-auto w-full sm:w-72 rounded-lg border px-3 py-1.5 text-sm'/>
+    </label>
+  </div>
+
+  <div id='grid' class='mt-6 grid gap-4'>
+    {all.map(entry =>
+      <ProblemCard entry={entry}/>)}
+  </div>
+
+  <script is:raw>
+    const url = new URL(location.href)
+    const difficulty = url.searchParams.get('difficulty')?.toLowerCase() || ''
+    const searchInput = document.getElementById('q')
+    const cards = [...document.querySelectorAll('#grid > a')]
+
+    function apply(q) {
+      const query = (q || '').toLowerCase().trim()
+      cards.forEach(card => {
+        const t = card.textContent.toLowerCase()
+        const matchesQ = !query || t.includes(query)
+        const matchesD = !difficulty || t.includes(difficulty)
+        card.style.display = (matchesQ && matchesD) ? '' : 'none'
+      })
+    }
+
+    apply('')
+    searchInput?.addEventListener('input', (e) => apply(e.target.value))
+  </script>
 </Layout>

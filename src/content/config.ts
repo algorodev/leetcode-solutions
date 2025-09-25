@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const leetcode = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/leetcode' }),
   schema: z.object({
     id: z.number(),
     title: z.string(),
@@ -9,10 +10,10 @@ const leetcode = defineCollection({
     difficulty: z.enum(['Easy', 'Medium', 'Hard']),
     tags: z.array(z.string()).default([]),
     link: z.string().url(),
-    langs: z.array(z.string()).default(['ts']),
-    timeComplexity: z.string().optional(),
-    spaceComplexity: z.string().optional(),
-    updatedAt: z.string().datetime().optional(),
+    languages: z.array(z.string()).default(['ts']),
+    time: z.string().optional(),
+    space: z.string().optional(),
+    updated: z.string().datetime().optional(),
   }),
 });
 

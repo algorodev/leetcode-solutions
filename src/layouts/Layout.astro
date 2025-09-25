@@ -1,20 +1,24 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css';
+import Meta from '../components/Meta.astro';
 
-const { title = 'LeetCode Solutions' } = Astro.props
+type LayoutProps = {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+};
+
+const { title = 'LeetCode Solutions', description, url, image } = Astro.props as LayoutProps;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="min-h-screen bg-white text-slate-900 antialiased">
-		<main class="mx-auto max-w-3xl px-4 py-8">
-			<slot />
-		</main>
-	</body>
+  <head>
+    <Meta title={title} description={description} url={url} image={image} />
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 antialiased">
+    <main class="mx-auto max-w-3xl px-4 py-8">
+      <slot />
+    </main>
+  </body>
 </html>

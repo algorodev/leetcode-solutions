@@ -1,5 +1,5 @@
 @import 'tailwindcss';
 
 .prose code {
-	@apply rounded px-1 bg-gray-100 text-sm;
+  @apply rounded bg-gray-100 px-1 text-sm;
 }

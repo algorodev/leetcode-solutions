@@ -1,0 +1,22 @@
+---
+import DifficultyBadge from './DifficultyBadge.astro'
+import TagPill from './TagPill.astro'
+
+const { entry } = Astro.props
+
+const d = entry.data
+const href = `/p/${d.slug ?? entry.slug}`
+
+---
+<a href={href} class="block rounded-2xl border p-4 hover:shadow-sm transition">
+  <div class="flex items-center justify-between gap-3">
+    <h3 class="text-lg font-semibold">{d.title}</h3>
+    <DifficultyBadge level={d.difficulty} />
+  </div>
+  <p class="mt-1 text-sm text-slate-500">#{d.id}</p>
+  {d.tags?.length ? (
+    <div class="mt-2 flex flex-wrap gap-1.5">
+      {d.tags.map((t: string) => <TagPill label={t} />)}
+    </div>
+  ) : null}
+</a>

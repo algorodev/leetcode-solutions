@@ -15,14 +15,18 @@ const counts = all.reduce<Record<'Easy' | 'Medium' | 'Hard', number>>((acc, e) =
   <p class='mt-1 text-slate-600'>Explanations, code and complexity notes.</p>
 
   <div class='mt-6 flex flex-wrap items-center gap-2'>
-    <a href='/?difficulty=Easy' class='rounded-full border px-3 py-1 text-sm'>Easy ({counts.Easy})</a>
-    <a href='/?difficulty=Medium' class='rounded-full border px-3 py-1 text-sm'>Medium ({counts.Medium})</a>
-    <a href='/?difficulty=Hard' class='rounded-full border px-3 py-1 text-sm'>Hard ({counts.Hard})</a>
-    <a href='/' class='rounded-full border px-3 py-1 text-sm'>All</a>
+    <a href='/?difficulty=Easy' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Easy ({counts.Easy})</a>
+    <a href='/?difficulty=Medium' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Medium ({counts.Medium})</a>
+    <a href='/?difficulty=Hard' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Hard ({counts.Hard})</a>
+    <a href='/' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>All</a>
 
     <label>
-      <input id='q' type='search' placeholder='Search title or tag…'
-             class='ml-auto w-full sm:w-72 rounded-lg border px-3 py-1.5 text-sm'/>
+      <input
+        id='q'
+        type='search'
+        placeholder='Search title or tag…'
+        class='ml-auto w-full sm:w-72 rounded-lg border px-3 py-1.5 text-sm'
+      />
     </label>
   </div>
 

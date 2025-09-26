@@ -6,19 +6,6 @@ export function rtToPlain(rt: any[]): string {
   return (rt ?? []).map((r: any) => r.plain_text ?? '').join('');
 }
 
-export function fileToUrl(file: any): string | undefined {
-  if (!file) return undefined;
-  if (file.type === 'external') return file.external?.url;
-  if (file.type === 'file') return file.file?.url;
-  return undefined;
-}
-
-export function getCoverUrl(page: PageObjectResponse): string | undefined {
-  const c = (page as any).cover;
-  if (!c) return undefined;
-  return fileToUrl(c);
-}
-
 export function mapLeetCode(page: PageObjectResponse): LeetCode {
   const props: any = page.properties;
 
@@ -32,7 +19,7 @@ export function mapLeetCode(page: PageObjectResponse): LeetCode {
   const difficulty = props?.Difficulty?.select?.name ?? 'Easy';
   const tags = (props?.Tags?.multi_select ?? []).map((t: any) => t.name);
   const link = props?.Link?.url ?? undefined;
-  const languages = (props?._Languages?.multi_select ?? []).map((l: any) => l.name);
+  const languages = (props?.Languages?.multi_select ?? []).map((l: any) => l.name);
   const time = props?.Time?.rich_text?.[0]?.plain_text ?? undefined;
   const space = props?.Space?.rich_text?.[0]?.plain_text ?? undefined;
   const updated = props?.Updated?.date?.start ?? undefined;

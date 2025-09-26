@@ -139,9 +139,15 @@ export async function blocksToMDX(
         if (children?.length) out.push(...(await renderBlocks(children, depth + 1)));
       } else if (t === 'code') {
         const lang = block.code?.language || '';
-        const codeText = (block.code?.rich_text ?? [])
-          .map((r: any) => r?.plain_text ?? '')
-          .join('');
+        const codeText = extractCodeWithIndentation(block.code?.rich_text ?? []);
+
+        function extractCodeWithIndentation(rt: any[] = []): string {
+          return rt
+            .map((r) => {
+              return r?.plain_text ?? '';
+            })
+            .join('');
+        }
 
         const getLanguageTitle = (language: string): string => {
           const langMap: Record<string, string> = {
@@ -155,8 +161,10 @@ export async function blocksToMDX(
         const title = getLanguageTitle(lang);
 
         out.push('');
-        out.push(`<SolutionTabs lang="${lang}" title="${title}">`);
+        out.push(`<SolutionTabs title="${title}">`);
+        out.push('```' + lang);
         out.push(codeText);
+        out.push('```');
         out.push('</SolutionTabs>');
         out.push('');
       } else if (t === 'image') {

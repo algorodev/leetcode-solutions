@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import DifficultyBadge from '../../components/DifficultyBadge.astro'
+import { getAllLeetCodes, getLeetcodeBySlug } from '../../lib/content/leetcodes.ts'
+
+type SlugProps = {
+  slug: string;
+}
+
+export async function getStaticPaths() {
+  const leetcodes = await getAllLeetCodes();
+  return leetcodes.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params as SlugProps
+const leetcode = await getLeetcodeBySlug(slug)
+if (!leetcode) throw new Error(`Post not found: ${slug}`);
+
+const url = new URL(Astro.request.url, Astro.site).toString();
+const Content = leetcode.Content;
+---
+<Layout title={`${leetcode.title} – Solution`} description={`LeetCode #${leetcode.id} ${leetcode.title} solution: ${leetcode.difficulty}`} url={url}>
+  <article class="prose prose-slate max-w-none">
+    <a href="/" class="no-underline text-sm text-slate-500 hover:underline">← Back</a>
+    <h1 class="mt-2">{leetcode.title}</h1>
+
+    <div class="mt-2 flex flex-wrap items-center gap-3">
+      <DifficultyBadge level={leetcode.difficulty} />
+      <span class="text-sm text-slate-500">#{leetcode.id}</span>
+      <a href={leetcode.link} target="_blank" rel="noopener" class="text-sm underline">Problem</a>
+      {leetcode.tags?.length ? <span class="text-sm text-slate-500">{leetcode.tags.join(' • ')}</span> : null}
+    </div>
+    <Content />
+    <hr />
+    <h3>Metadata</h3>
+    <ul>
+      {leetcode.time && <li><strong>Time:</strong> {leetcode.time}</li>}
+      {leetcode.space && <li><strong>Space:</strong> {leetcode.space}</li>}
+      {leetcode.languages && <li><strong>Languages:</strong> {leetcode.languages.join(' · ')}</li>}
+      {leetcode.update && <li><strong>Updated:</strong> {new Date(leetcode.update).toLocaleDateString()}</li>}
+    </ul>
+  </article>
+</Layout>

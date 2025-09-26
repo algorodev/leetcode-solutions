@@ -5,9 +5,9 @@ import TagPill from './TagPill.astro'
 const { entry } = Astro.props
 
 const d = entry.data
-const href = `/p/${d.slug ?? entry.slug}`
-
+const href = `/problem/${d.slug ?? entry.slug}`
 ---
+
 <a href={href} class="block rounded-2xl border p-4 hover:shadow-sm transition">
   <div class="flex items-center justify-between gap-3">
     <h3 class="text-lg font-semibold">{d.title}</h3>

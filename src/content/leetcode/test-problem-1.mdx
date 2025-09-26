@@ -6,16 +6,20 @@ difficulty: Easy
 tags:
   - algorithms
 link: 'https://algoro.dev/'
-languages: []
-time: 0n
-space: 0n
+languages:
+  - TS
+  - Python
+time: 0(n)
+space: 0(n)
 update: '2025-09-25T14:56:00.000+02:00'
 ---
 import SolutionTabs from '../../components/SolutionTabs.astro';
 
 ## Intuition
 Briefly describe the thinking process before coding.
+<div class="my-2" />
 Why does this approach make sense?
+<div class="my-2" />
 ---
 ## Approach
 - Explain the main steps of the algorithm
@@ -24,22 +28,26 @@ Why does this approach make sense?
 ---
 ## Proof of Correctness
 Why does this algorithm always work?
+<div class="my-2" />
 Any mathematical reasoning or invariants here.
+<div class="my-2" />
 ---
 ## Complexity
-- **Time:** O(n)
-- **Space:** O(n)
-(These are also stored in the `Time` and `Space` properties for metadata,
-but include them here for human readers.)
+- **Time:** 0(n)
+- **Space:** 0(n)
+<div class="my-2" />
 ---
-### Code (TypeScript)
+### Code
 
-<SolutionTabs lang="typescript" title="TypeScript Solution">
+<SolutionTabs title="TypeScript Solution">
+```typescript
 const twoSum = (a: number, b: number) => a+b;
+```
 </SolutionTabs>
 
-### Code (Python)
-
-<SolutionTabs lang="python" title="Python Solution">
-const twoSum = (a, b) => a+b;
+<SolutionTabs title="Python Solution">
+```python
+def twoSum(a, b):
+	return a+b;
+```
 </SolutionTabs>

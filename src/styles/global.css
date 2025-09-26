@@ -3,11 +3,11 @@
 @plugin "@tailwindcss/typography";
 
 .prose pre {
-  @apply rounded-xl border;
+  @apply py-6 px-4;
 }
 .prose code {
-  @apply rounded bg-gray-100 px-1 text-sm;
+  @apply text-sm;
 }
 .prose :where(code):not(:where(pre code)) {
-  @apply bg-slate-100;
+  @apply bg-gray-100;
 }

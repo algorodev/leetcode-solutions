@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import Meta from '../components/Meta.astro';
+import '../styles/global.css'
+import Meta from '../components/Meta.astro'
 
 type LayoutProps = {
   title?: string;
@@ -9,24 +9,30 @@ type LayoutProps = {
   image?: string;
 };
 
-const { title = 'LeetCode Solutions', description, url, image } = Astro.props as LayoutProps;
+const { title = 'LeetCode Solutions', description, url, image } = Astro.props as LayoutProps
 ---
 
-<html lang="en">
+<html lang='en'>
   <head>
-    <Meta title={title} description={description} url={url} image={image} />
+    <Meta title={title} description={description} url={url} image={image}/>
   </head>
-  <body class="min-h-screen bg-white text-slate-900 antialiased">
-    <header class="border-b">
-      <div class="mx-auto max-w-3xl px-4 py-4 flex items-center gap-3">
-        <a href="/" class="font-semibold">lc.algoro.dev</a>
-        <nav class="ml-auto text-sm text-slate-500">
-          <a class="hover:text-slate-800" href="/">Home</a>
+  <body class='min-h-screen bg-white text-slate-900 antialiased'>
+    <header class='border-b'>
+      <div class='mx-auto max-w-3xl px-4 py-4 flex items-center gap-3'>
+        <a href='/' class='font-semibold'>lc.algoro.dev</a>
+        <nav class='ml-auto text-sm text-slate-500'>
+          <a
+            class='hover:text-slate-800'
+            href='https://algoro.dev/'
+            target='_blank'
+            rel='noopener noreferrer'>
+            Portfolio
+          </a>
         </nav>
       </div>
     </header>
-    <main class="mx-auto max-w-3xl px-4 py-8">
-      <slot />
+    <main class='mx-auto max-w-3xl px-4 py-8'>
+      <slot/>
     </main>
   </body>
 </html>

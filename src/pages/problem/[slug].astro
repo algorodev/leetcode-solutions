@@ -21,14 +21,20 @@ const Content = leetcode.Content;
 ---
 <Layout title={`${leetcode.title} – Solution`} description={`LeetCode #${leetcode.id} ${leetcode.title} solution: ${leetcode.difficulty}`} url={url}>
   <article class="prose prose-slate max-w-none">
-    <a href="/" class="no-underline text-sm text-slate-500 hover:underline">← Back</a>
-    <h1 class="mt-2">{leetcode.title}</h1>
-
-    <div class="mt-2 flex flex-wrap items-center gap-3">
-      <DifficultyBadge level={leetcode.difficulty} />
-      <span class="text-sm text-slate-500">#{leetcode.id}</span>
-      <a href={leetcode.link} target="_blank" rel="noopener" class="text-sm underline">Problem</a>
-      {leetcode.tags?.length ? <span class="text-sm text-slate-500">{leetcode.tags.join(' • ')}</span> : null}
+    <a href="/" class="inline-flex items-center gap-1 no-underline text-sm text-slate-500 hover:text-slate-700 hover:underline transition-colors">
+      ← Back to problems
+    </a>
+    <div class="mt-4 p-4 sm:p-6 rounded-xl bg-white/80 border border-slate-200">
+      <h1 class="mt-0 mb-4">{leetcode.title}</h1>
+      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+        <DifficultyBadge level={leetcode.difficulty} />
+        <span class="text-sm text-slate-500">#{leetcode.id}</span>
+        <a href={leetcode.link} target="_blank" rel="noopener"
+           class="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 transition-colors">
+          View Problem ↗
+        </a>
+        {leetcode.tags?.length ? <span class="text-sm text-slate-500">{leetcode.tags.join(' • ')}</span> : null}
+      </div>
     </div>
     <Content />
     <hr />

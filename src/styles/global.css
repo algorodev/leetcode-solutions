@@ -2,12 +2,28 @@
 
 @plugin "@tailwindcss/typography";
 
-.prose pre {
-  @apply py-6 px-4;
+.prose {
+  @apply text-slate-700;
 }
+
+.prose pre {
+  @apply py-4 sm:py-6 px-3 sm:px-4 bg-slate-900 border border-slate-200 rounded-lg;
+}
+
 .prose code {
   @apply text-sm;
 }
+
 .prose :where(code):not(:where(pre code)) {
-  @apply bg-gray-100;
+  @apply bg-slate-100 text-slate-800;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 640px) {
+  .prose h1 { @apply text-2xl; }
+  .prose h2 { @apply text-xl; }
+  .prose h3 { @apply text-lg; }
 }

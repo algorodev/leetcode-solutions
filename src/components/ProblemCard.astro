@@ -8,14 +8,14 @@ const d = entry.data
 const href = `/problem/${d.slug ?? entry.slug}`
 ---
 
-<a href={href} class="block rounded-2xl border p-4 hover:shadow-sm transition">
-  <div class="flex items-center justify-between gap-3">
-    <h3 class="text-lg font-semibold">{d.title}</h3>
+<a href={href}
+   class="flex flex-col justify-between rounded-xl border border-slate-200 bg-white/80 hover:bg-white hover:shadow-md hover:border-slate-300 p-4 sm:p-5 transition-all duration-200">
+  <div class="flex items-start justify-between gap-3 flex-wrap sm:flex-nowrap">
+    <h3 class="text-base sm:text-lg font-semibold text-slate-900 leading-tight">#{d.id} {d.title}</h3>
     <DifficultyBadge level={d.difficulty} />
   </div>
-  <p class="mt-1 text-sm text-slate-500">#{d.id}</p>
   {d.tags?.length ? (
-    <div class="mt-2 flex flex-wrap gap-1.5">
+    <div class="mt-3 flex flex-wrap gap-1.5">
       {d.tags.map((t: string) => <TagPill label={t} />)}
     </div>
   ) : null}

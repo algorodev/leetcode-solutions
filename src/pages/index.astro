@@ -14,23 +14,33 @@ const counts = all.reduce<Record<'Easy' | 'Medium' | 'Hard', number>>((acc, e) =
   <h1 class='text-3xl font-bold'>LeetCode Solutions</h1>
   <p class='mt-1 text-slate-600'>Explanations, code and complexity notes.</p>
 
-  <div class='mt-6 flex flex-wrap items-center gap-2'>
-    <a href='/?difficulty=Easy' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Easy ({counts.Easy})</a>
-    <a href='/?difficulty=Medium' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Medium ({counts.Medium})</a>
-    <a href='/?difficulty=Hard' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>Hard ({counts.Hard})</a>
-    <a href='/' class='rounded-full border px-3 py-1 text-sm cursor-pointer hover:bg-gray-100'>All</a>
+  <div class='mt-6 flex flex-wrap items-center justify-between gap-4'>
+    <div class='flex flex-wrap items-center gap-2'>
+      <a href='/?difficulty=Easy'
+         class='rounded-full border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 px-3 py-1.5 text-sm transition-colors'>
+        Easy ({counts.Easy})
+      </a>
+      <a href='/?difficulty=Medium'
+         class='rounded-full border border-amber-200 bg-amber-50 hover:bg-amber-100 text-amber-700 px-3 py-1.5 text-sm transition-colors'>
+        Medium ({counts.Medium})
+      </a>
+      <a href='/?difficulty=Hard'
+         class='rounded-full border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 px-3 py-1.5 text-sm transition-colors'>
+        Hard ({counts.Hard})
+      </a>
+      <a href='/'
+         class='rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 px-3 py-1.5 text-sm transition-colors'>
+        All
+      </a>
+    </div>
 
-    <label>
-      <input
-        id='q'
-        type='search'
-        placeholder='Search title or tag…'
-        class='ml-auto w-full sm:w-72 rounded-lg border px-3 py-1.5 text-sm'
-      />
+    <label class='w-full sm:w-auto sm:ml-4'>
+      <input id='q' type='search' placeholder='Search title or tag…'
+             class='w-full sm:w-72 rounded-lg border border-slate-300 bg-white/80 px-3 py-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all' />
     </label>
   </div>
 
-  <div id='grid' class='mt-6 grid gap-4'>
+  <div id='grid' class='mt-6 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
     {all.map(entry =>
       <ProblemCard entry={entry}/>)}
   </div>

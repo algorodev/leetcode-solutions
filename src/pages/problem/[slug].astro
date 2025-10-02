@@ -37,13 +37,5 @@ const Content = leetcode.Content;
       </div>
     </div>
     <Content />
-    <hr />
-    <h3>Metadata</h3>
-    <ul>
-      {leetcode.time && <li><strong>Time:</strong> {leetcode.time}</li>}
-      {leetcode.space && <li><strong>Space:</strong> {leetcode.space}</li>}
-      {leetcode.languages && <li><strong>Languages:</strong> {leetcode.languages.join(' · ')}</li>}
-      {leetcode.update && <li><strong>Updated:</strong> {new Date(leetcode.update).toLocaleDateString()}</li>}
-    </ul>
   </article>
 </Layout>
